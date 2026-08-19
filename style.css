@@ -3,33 +3,74 @@
 }
 
 :root {
-    --red: #e63946;
-    --yellow: #ffd166;
-    --blue: #277da1;
-    --cream: #fff4d6;
-    --dark: #252525;
+    --red: #d93636;
+    --red-dark: #9f2020;
+    --yellow: #ffd34e;
+    --yellow-dark: #c79516;
+    --blue: #287ca8;
+    --green: #299b78;
+    --cream: #fff4d2;
+    --brown: #633b20;
+    --dark: #29211c;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:
-        radial-gradient(circle at 50% 20%, #fff8df 0%, transparent 35%),
-        linear-gradient(135deg, #e63946, #f4a261 50%, #2a9d8f);
+        radial-gradient(
+            circle at 50% 15%,
+            #fff7d9 0%,
+            rgba(255, 247, 217, 0.25) 28%,
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #c92f3d,
+            #ed9a3b 48%,
+            #238b73
+        );
 
     color: var(--dark);
+
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.18) 1px,
+            transparent 1px
+        );
+
+    background-size: 18px 18px;
+
+    opacity: 0.35;
 }
 
 .game {
-    width: min(700px, 95vw);
-    padding: 30px 20px 50px;
+    width: min(760px, 95vw);
+
+    margin: auto;
+
+    padding:
+        30px
+        20px
+        60px;
 
     text-align: center;
 }
@@ -37,121 +78,199 @@ body {
 h1 {
     margin: 0;
 
-    font-size: clamp(40px, 9vw, 72px);
-    font-weight: 900;
-    letter-spacing: 5px;
+    font-size: clamp(42px, 9vw, 76px);
 
-    color: white;
+    font-weight: 1000;
+
+    letter-spacing: 6px;
+
+    color: #fff7df;
 
     text-shadow:
-        0 4px 0 #9d1d27,
-        0 8px 15px rgba(0, 0, 0, 0.25);
+        0 4px 0 var(--red-dark),
+        0 8px 0 rgba(0,0,0,0.08),
+        0 12px 22px rgba(0,0,0,0.3);
 }
 
 .subtitle {
-    margin: 5px 0 25px;
+    margin:
+        2px
+        0
+        25px;
 
     color: white;
-    font-size: 16px;
-    font-weight: bold;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
 }
 
-/* ---------------- Wheel ---------------- */
+
+/* =====================================
+   WHEEL AREA
+===================================== */
 
 .wheel-area {
     position: relative;
 
-    width: min(520px, 90vw);
+    width: min(560px, 91vw);
     aspect-ratio: 1;
 
-    margin: 0 auto 25px;
+    margin:
+        0
+        auto
+        30px;
 }
+
+
+/* =====================================
+   WOODEN OUTER FRAME
+===================================== */
 
 .wheel-frame {
     position: absolute;
+
     inset: 0;
 
-    padding: 18px;
+    padding: 17px;
 
     border-radius: 50%;
 
-    background: #f6c453;
+    background:
+        linear-gradient(
+            135deg,
+            #8d542b,
+            #d28a40 25%,
+            #71401f 50%,
+            #c47731 75%,
+            #75431f
+        );
 
     box-shadow:
-        0 10px 0 #a86d17,
-        0 18px 30px rgba(0, 0, 0, 0.3);
+        0 10px 0 #4a2917,
+        0 18px 30px rgba(0,0,0,0.35),
+        inset 0 0 0 4px rgba(255,255,255,0.18);
 }
 
+
+/* Golden inner rim */
+
+.wheel-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border-radius: 50%;
+
+    border: 7px solid var(--yellow);
+
+    box-shadow:
+        inset 0 0 0 3px #fff2a8,
+        0 0 0 3px rgba(75,40,15,0.4);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+
+/* =====================================
+   WHEEL
+===================================== */
+
 .wheel {
+    position: relative;
+
     width: 100%;
     height: 100%;
 
     border-radius: 50%;
 
-    border: 8px solid #fff4d6;
-
-    position: relative;
     overflow: hidden;
 
-    background: conic-gradient(
-        #e63946 0deg 45deg,
-        #ffd166 45deg 90deg,
-        #277da1 90deg 135deg,
-        #2a9d8f 135deg 180deg,
-        #e63946 180deg 225deg,
-        #ffd166 225deg 270deg,
-        #277da1 270deg 315deg,
-        #2a9d8f 315deg 360deg
-    );
+    border: 7px solid var(--cream);
 
-    transition: transform 5.5s cubic-bezier(0.12, 0.78, 0.15, 1);
+    background:
+        conic-gradient(
+            var(--red) 0deg 45deg,
+            var(--yellow) 45deg 90deg,
+            var(--blue) 90deg 135deg,
+            var(--green) 135deg 180deg,
+            var(--red) 180deg 225deg,
+            var(--yellow) 225deg 270deg,
+            var(--blue) 270deg 315deg,
+            var(--green) 315deg 360deg
+        );
+
+    box-shadow:
+        inset 0 0 30px rgba(0,0,0,0.35),
+        inset 0 0 0 3px rgba(255,255,255,0.4);
+
+    transition:
+        transform 5.8s cubic-bezier(
+            0.10,
+            0.75,
+            0.16,
+            1
+        );
 }
+
+
+/* Sector separators */
+
+.wheel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        repeating-conic-gradient(
+            from -0.7deg,
+            rgba(255,255,255,0.85) 0deg,
+            rgba(255,255,255,0.85) 1.5deg,
+            transparent 1.5deg,
+            transparent 45deg
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* Gloss */
 
 .wheel::after {
     content: "";
 
     position: absolute;
-    inset: 0;
+
+    inset: 4%;
 
     border-radius: 50%;
 
-    box-shadow:
-        inset 0 0 0 5px rgba(255,255,255,0.5),
-        inset 0 0 40px rgba(0,0,0,0.2);
+    background:
+        linear-gradient(
+            130deg,
+            rgba(255,255,255,0.35),
+            transparent 28%
+        );
+
+    pointer-events: none;
+
+    z-index: 4;
 }
 
-.wheel-center {
-    position: absolute;
 
-    width: 82px;
-    height: 82px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background: #fff4d6;
-    border: 7px solid #d89b26;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow:
-        0 4px 0 #8c6118,
-        0 5px 15px rgba(0,0,0,0.25);
-
-    z-index: 5;
-}
-
-.wheel-center span {
-    font-size: 35px;
-}
-
-/* Numbers directly on wheel */
+/* =====================================
+   NUMBERS
+===================================== */
 
 .wheel-number {
     position: absolute;
@@ -159,89 +278,202 @@ h1 {
     left: 50%;
     top: 50%;
 
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
 
-    margin-left: -30px;
-    margin-top: -30px;
+    margin-left: -29px;
+    margin-top: -29px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
-    font-size: 27px;
-    font-weight: 900;
+    font-size: 30px;
+
+    font-weight: 1000;
 
     color: white;
 
     text-shadow:
-        2px 2px 0 rgba(0,0,0,0.3);
+        2px 3px 0 rgba(0,0,0,0.35);
 
-    z-index: 3;
+    z-index: 5;
 
     pointer-events: none;
 }
 
-/* Pointer */
 
-.pointer {
+/* =====================================
+   CENTER
+===================================== */
+
+.wheel-center {
     position: absolute;
 
     z-index: 10;
 
-    top: -13px;
+    width: 86px;
+    height: 86px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff8bd,
+            #ffd34e 55%,
+            #d49316 100%
+        );
+
+    border:
+        7px solid #70431f;
+
+    box-shadow:
+        0 5px 0 #4c2c18,
+        0 8px 15px rgba(0,0,0,0.3),
+        inset 0 0 0 4px rgba(255,255,255,0.35);
+}
+
+.wheel-center span {
+    font-size: 36px;
+
+    filter:
+        drop-shadow(
+            2px 3px 0 rgba(0,0,0,0.2)
+        );
+}
+
+
+/* =====================================
+   POINTER
+===================================== */
+
+.pointer {
+    position: absolute;
+
+    z-index: 20;
+
+    top: -15px;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    width: 0;
-    height: 0;
+    width: 52px;
+    height: 68px;
 
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    border-top: 55px solid #d62828;
-
-    filter: drop-shadow(0 5px 2px rgba(0,0,0,0.3));
+    filter:
+        drop-shadow(
+            0 5px 3px rgba(0,0,0,0.35)
+        );
 }
+
+
+/* Main arrow */
+
+.pointer::after {
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+    top: 15px;
+
+    width: 48px;
+    height: 48px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5656,
+            #b51f27
+        );
+
+    clip-path:
+        polygon(
+            50% 100%,
+            0 0,
+            100% 0
+        );
+
+    border-radius: 5px;
+}
+
+
+/* Top metal pin */
 
 .pointer::before {
     content: "";
 
     position: absolute;
 
-    left: -16px;
-    top: -50px;
+    z-index: 2;
 
-    width: 32px;
-    height: 32px;
+    left: 11px;
+    top: -5px;
 
-    background: #ffd166;
+    width: 30px;
+    height: 30px;
 
     border-radius: 50%;
 
-    border: 5px solid #9d1d27;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            white,
+            #ffd34e 35%,
+            #b77d13 100%
+        );
+
+    border:
+        4px solid #6d411e;
+
+    box-shadow:
+        0 3px 0 #432716;
 }
 
-/* ---------------- Selection ---------------- */
+
+/* =====================================
+   NUMBER SELECTION
+===================================== */
 
 .number-selection {
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 .number-selection p {
-    margin: 0 0 10px;
+    margin:
+        0
+        0
+        12px;
 
     color: white;
 
     font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 2px;
+
+    font-weight: 1000;
+
+    letter-spacing: 3px;
 }
 
 .numbers {
     display: flex;
+
     justify-content: center;
-    gap: 8px;
+
+    gap: 10px;
 
     flex-wrap: wrap;
 }
@@ -250,102 +482,151 @@ h1 {
     width: 52px;
     height: 52px;
 
-    border: none;
+    border: 3px solid white;
+
     border-radius: 50%;
 
-    background: white;
+    background: var(--cream);
 
-    color: #333;
+    color: var(--dark);
 
     font-size: 20px;
-    font-weight: 900;
+
+    font-weight: 1000;
 
     cursor: pointer;
 
     box-shadow:
-        0 5px 0 #c9c9c9;
+        0 5px 0 rgba(0,0,0,0.25);
 
     transition:
         transform 0.15s,
-        background 0.15s;
+        background 0.15s,
+        box-shadow 0.15s;
 }
 
-.numbers button:hover {
-    transform: translateY(-2px);
+.numbers button:hover:not(:disabled) {
+    transform:
+        translateY(-3px)
+        scale(1.04);
 }
 
 .numbers button.selected {
     background: var(--yellow);
 
-    transform: translateY(-3px);
+    transform:
+        translateY(-4px)
+        scale(1.08);
 
     box-shadow:
-        0 7px 0 #c49325,
-        0 0 20px rgba(255, 209, 102, 0.8);
+        0 7px 0 var(--yellow-dark),
+        0 0 25px rgba(255,211,78,0.8);
 }
 
-/* ---------------- Spin button ---------------- */
+.numbers button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.65;
+}
+
+
+/* =====================================
+   SPIN BUTTON
+===================================== */
 
 .spin-button {
-    margin-top: 25px;
+    margin-top: 28px;
 
-    padding: 18px 55px;
+    padding:
+        18px
+        58px;
 
-    border: none;
-    border-radius: 50px;
+    border:
+        4px solid #fff1bf;
 
-    background: #e63946;
+    border-radius: 60px;
+
+    background:
+        linear-gradient(
+            #f04a4a,
+            #c92d36
+        );
 
     color: white;
 
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 1px;
+    font-size: 23px;
+
+    font-weight: 1000;
+
+    letter-spacing: 2px;
 
     cursor: pointer;
 
     box-shadow:
-        0 7px 0 #a51f2a,
-        0 10px 20px rgba(0,0,0,0.25);
+        0 8px 0 #8f1e25,
+        0 13px 25px rgba(0,0,0,0.3);
 
     transition:
-        transform 0.15s,
+        transform 0.12s,
+        box-shadow 0.12s,
         opacity 0.15s;
 }
 
 .spin-button:hover:not(:disabled) {
-    transform: translateY(-2px);
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 11px 0 #8f1e25,
+        0 16px 28px rgba(0,0,0,0.3);
 }
 
 .spin-button:active:not(:disabled) {
-    transform: translateY(5px);
+    transform:
+        translateY(5px);
 
     box-shadow:
-        0 2px 0 #a51f2a;
+        0 3px 0 #8f1e25;
 }
 
 .spin-button:disabled {
     opacity: 0.5;
+
     cursor: not-allowed;
 }
 
-/* ---------------- Result ---------------- */
+
+/* =====================================
+   RESULT
+===================================== */
 
 .result {
-    margin: 25px auto 0;
+    width: min(460px, 90vw);
 
-    padding: 25px;
+    margin:
+        30px
+        auto
+        0;
 
-    width: min(450px, 90vw);
+    padding: 27px;
 
-    background: white;
+    border-radius: 28px;
 
-    border-radius: 25px;
+    background:
+        linear-gradient(
+            #fffdf4,
+            #fff3cf
+        );
+
+    border:
+        5px solid var(--yellow);
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,0.25);
+        0 15px 40px rgba(0,0,0,0.3);
 
-    animation: resultIn 0.5s ease-out;
+    animation:
+        resultIn 0.6s
+        cubic-bezier(.2,1.5,.4,1);
 }
 
 .hidden {
@@ -353,45 +634,67 @@ h1 {
 }
 
 .result-title {
-    font-size: 22px;
-    font-weight: 900;
+    color: var(--red);
 
-    color: #e63946;
+    font-size: 22px;
+
+    font-weight: 1000;
 }
 
 .result-number {
-    margin-top: 10px;
+    margin-top: 5px;
 
-    font-size: 60px;
-    font-weight: 900;
+    font-size: 70px;
 
-    color: #277da1;
+    font-weight: 1000;
+
+    color: var(--blue);
+
+    text-shadow:
+        2px 3px 0 rgba(0,0,0,0.15);
 }
 
 .result-prize {
-    margin-top: 5px;
+    margin-top: 4px;
 
-    font-size: 27px;
-    font-weight: 900;
+    font-size: 29px;
 
-    color: #333;
+    font-weight: 1000;
+
+    color: var(--dark);
 }
 
 @keyframes resultIn {
-    from {
+
+    0% {
         opacity: 0;
-        transform: scale(0.7);
+
+        transform:
+            scale(0.65)
+            rotate(-4deg);
     }
 
-    to {
+    70% {
+        transform:
+            scale(1.05)
+            rotate(1deg);
+    }
+
+    100% {
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            scale(1)
+            rotate(0);
     }
 }
 
-/* ---------------- Mobile ---------------- */
 
-@media (max-width: 500px) {
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 520px) {
 
     .game {
         padding-top: 20px;
@@ -401,17 +704,43 @@ h1 {
         width: 88vw;
     }
 
+    .wheel-frame {
+        padding: 13px;
+    }
+
     .wheel-center {
-        width: 65px;
-        height: 65px;
+        width: 67px;
+        height: 67px;
     }
 
     .wheel-center span {
         font-size: 27px;
     }
 
+    .wheel-number {
+        width: 46px;
+        height: 46px;
+
+        margin-left: -23px;
+        margin-top: -23px;
+
+        font-size: 24px;
+    }
+
+    .numbers {
+        gap: 7px;
+    }
+
     .numbers button {
         width: 45px;
         height: 45px;
+    }
+
+    .spin-button {
+        padding:
+            16px
+            45px;
+
+        font-size: 20px;
     }
 }
