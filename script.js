@@ -3,7 +3,7 @@
 // ==========================================
 
 const prizes = {
-    1: "Dumle 🍫",
+    1: "D 🍫",
     2: "Ahlgrens bilar 🚗",
     3: "Kexchoklad 🍫",
     4: "Marabou 🍫",
