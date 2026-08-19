@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyckohjul</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="game">
+
+        <h1>LYCKOHJUL</h1>
+        <p class="subtitle">Выберите свой счастливый номер</p>
+
+        <section class="wheel-area">
+
+            <!-- Указатель -->
+            <div class="pointer">
+                <div class="pointer-tip"></div>
+            </div>
+
+            <!-- Рулетка -->
+            <div class="wheel-frame">
+                <div class="wheel" id="wheel"></div>
+                <div class="wheel-center">
+                    <span>🎡</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="number-selection">
+            <p>Выбери число</p>
+
+            <div class="numbers" id="numbers">
+                <button data-number="1">1</button>
+                <button data-number="2">2</button>
+                <button data-number="3">3</button>
+                <button data-number="4">4</button>
+                <button data-number="5">5</button>
+                <button data-number="6">6</button>
+                <button data-number="7">7</button>
+                <button data-number="8">8</button>
+            </div>
+        </section>
+
+        <button class="spin-button" id="spinButton" disabled>
+            КРУТИТЬ!
+        </button>
+
+        <div class="result hidden" id="result">
+            <div class="result-title">🎉 ПОЗДРАВЛЯЕМ!</div>
+            <div class="result-number" id="resultNumber"></div>
+            <div class="result-prize" id="resultPrize"></div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
